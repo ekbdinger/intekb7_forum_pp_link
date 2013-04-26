@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Forum-PP Link feature.
+ */
+
+include_once 'forum_pp_link.features.inc';
