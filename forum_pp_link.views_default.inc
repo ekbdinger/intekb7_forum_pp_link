@@ -22,7 +22,7 @@ function forum_pp_link_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'pp_forum_link';
+  $handler->display->display_options['title'] = 'Forum Posts Linked to Primary Page';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -69,14 +69,6 @@ function forum_pp_link_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Content: Nid */
-  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
-  $handler->display->display_options['arguments']['nid']['table'] = 'node';
-  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
-  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
   /* Contextual filter: Content: Primary Page (field_forum_pp) */
   $handler->display->display_options['arguments']['field_forum_pp_nid']['id'] = 'field_forum_pp_nid';
   $handler->display->display_options['arguments']['field_forum_pp_nid']['table'] = 'field_data_field_forum_pp';
@@ -120,6 +112,14 @@ function forum_pp_link_views_default_views() {
   $handler->display->display_options['arguments']['field_forum_pp_nid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_forum_pp_nid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['path'] = 'pp/%/forum';
+
+  /* Display: EVA Field */
+  $handler = $view->new_display('entity_view', 'EVA Field', 'entity_view_1');
+  $handler->display->display_options['entity_type'] = 'node';
+  $handler->display->display_options['bundles'] = array(
+    0 => 'primary_page_content',
+  );
+  $handler->display->display_options['show_title'] = 1;
   $export['pp_forum_link'] = $view;
 
   return $export;
